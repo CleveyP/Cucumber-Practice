@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Calculator Test Suite">
+    <test name="Calculator Feature Tests">
+        <packages>
+            <!-- point to the package containing your runner class -->
+            <package name="org.example.runners"/>
+            <package name="org.example.selenium"/>
+            <package name="org.example.api"/>
+        </packages>
+    </test>
+</suite>
+
+
+
+
+

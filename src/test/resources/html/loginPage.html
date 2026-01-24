@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<form id="loginForm">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button type="submit" id="loginBtn">Go!</button>
+</form>
+
+<p id="errorMessage"></p>
+
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // prevent form submission
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch(`http://localhost:8080/login?username=${username}&password=${password}`);
+            const result = await response.text();
+            //forward to calc page
+            //but for now
+            console.log(JSON.stringify(result));
+             if(result !== "OK")
+                document.getElementById('errorMessage').innerText = result;
+             else
+                document.getElementById('errorMessage').innerText = 'Logged In Successfully!';
+        } catch (err) {
+            document.getElementById('errorMessage').innerText = 'Error Logging In!';
+            console.error(err);
+        }
+    });
+</script>
+
+<style>
+    body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    }
+
+    form {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    }
+
+    #errorMessage {
+    color: red;
+    margin-top: 20px;
+    font-weight: bold;
+    }
+
+    input, select, button {
+    padding: 8px;
+    font-size: 16px;
+    }
+        h1 {
+        color: red
+        }
+</style>
+</body>
+</html>
