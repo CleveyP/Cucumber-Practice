@@ -11,9 +11,9 @@ Feature: Login Page End to End Tests
 
 
     Examples:
-    | username  | password |
-    | Cleveland | 1234     |
-    | Caimin    | 123      |
+      | username  | password |
+      | Cleveland | 1234     |
+      | Caimin    | 123      |
 
   Scenario Outline: A user can not login with incorrect username: "<username>" and/or incorrect password "<password>"
     When the user enters "<username>" and "<password>"
@@ -22,8 +22,8 @@ Feature: Login Page End to End Tests
 
 
     Examples:
-      | username  | password  | message        |
-      | Cleveland | 123       | Wrong Password |
-      | Caimi     | 123       | Wrong Username |
-      | a         | 1234      | Wrong Username |
+      | username  | password | message        |
+      | Cleveland | 123      | Wrong Password |
+      | Caimi     | 123      | Wrong Username |
+      | a         | 1234     | Wrong Username |
 
