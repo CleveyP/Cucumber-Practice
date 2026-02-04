@@ -1,8 +1,7 @@
 package org.example.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -10,6 +9,7 @@ import org.testng.Assert;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 
 public abstract class Page {
@@ -26,6 +26,10 @@ public abstract class Page {
 
     public void open(){
         driver.get(url);
+    }
+
+    public void openPage(String path){
+        driver.get(url + "/" + path);
     }
 
     public void fillInputField(String content, By inputReference) {
@@ -62,6 +66,11 @@ public abstract class Page {
     }
 
 
+    public void assertUrl(String url) {
+        wait.until(ExpectedConditions.urlContains(url));
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
 
     public void validateAllImages(List<WebElement> images) {
 
@@ -73,5 +82,69 @@ public abstract class Page {
             Assert.assertFalse(imageUrlWorks(imageSource));
         }
     }
+
+    public List<WebElement> getElementsByTagName(String tagName) {
+        return driver.findElements(By.tagName(tagName));
+    }
+
+    public int getElementCountByTagName(String tagName){
+        return getElementsByTagName(tagName).size();
+    }
+
+    public int getElementAttributeValueById(String id, String attribute){
+        return Integer.parseInt(Objects.requireNonNull(driver.findElement(By.id(id)).getAttribute(attribute)));
+    }
+
+    public void refreshPageHard(){
+        driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
+    }
+
+    public void refreshPageSoft(){
+        Actions actions = new Actions(driver);
+        actions.keyDown(Keys.CONTROL)
+                .sendKeys("r")
+                .keyUp(Keys.CONTROL)
+                .perform();
+
+    }
+
+    public WebElement getElementById(String id){
+        return driver.findElement(By.id(id));
+    }
+
+    public void rightClickElement(WebElement element) {
+        new Actions(driver)
+                .contextClick(element)
+                .perform();
+    }
+
+    public boolean assertAlertOnPage(){
+        try {
+            driver.switchTo().alert();
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public WebElement getElementByTagAndText(String tag, String text) {
+        By locator = By.xpath(
+                String.format("//%s[contains(normalize-space(.), \"%s\")]", tag, text)
+        );
+        WebElement element = null;
+
+        try{
+            element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            return null;
+        }
+        return element;
+    }
+
+
+
+
+
+
 
 }

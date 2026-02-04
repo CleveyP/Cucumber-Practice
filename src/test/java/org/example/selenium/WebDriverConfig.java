@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 import java.time.Duration;
 
@@ -14,9 +15,9 @@ import java.time.Duration;
 @Configuration
 public class WebDriverConfig {
 
-    @ScenarioScope
     @Bean(destroyMethod = "quit")
-    public WebDriver webDriver(){
+    @ScenarioScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public ChromeDriver webDriver(){
         //ChromeOptions options = new ChromeOptions().addArguments("--no-sandbox", "--headless=new", "--disable-gpu");
         //return new ChromeDriver(options);
         return new ChromeDriver();

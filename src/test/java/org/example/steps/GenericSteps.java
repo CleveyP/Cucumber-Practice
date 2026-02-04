@@ -6,8 +6,11 @@ import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
+@Component
 public class GenericSteps {
 
     public final WebDriverWait wait;
@@ -34,5 +37,7 @@ public class GenericSteps {
             times--;
         }
     }
+
+
 
 }

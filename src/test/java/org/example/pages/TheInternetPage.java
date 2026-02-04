@@ -9,10 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -24,7 +21,7 @@ public class TheInternetPage extends Page{
     public Map<String, WebElement> hrefList = new HashMap<>();
 
     public TheInternetPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com/");
+        super(driver, wait, "http://the-internet.herokuapp.com");
     }
 
     public void loadLinks(){
@@ -50,19 +47,14 @@ public class TheInternetPage extends Page{
         link.click();
     }
 
-    public void assertUrl(String url) {
-        wait.until(ExpectedConditions.urlContains(url));
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-    }
 
-    public void fillAuthenticationForm(String username, String password) {
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
-    }
 
-    public void submitAuthenticationForm(){
-        clickButton(By.cssSelector("button[type='submit']"));
-    }
+    //----------------------------------Authentication form page----------------------------------
+
+
+
+
+    //----------------------------------Create/Delete page----------------------------------
 
 
 
@@ -71,26 +63,28 @@ public class TheInternetPage extends Page{
         return driver.findElements(By.cssSelector("button.added-manually")).size();
     }
 
-    public String getAuthBannerText(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
-        WebElement banner = driver.findElement(By.id("flash"));
-        return banner.getText();
-    }
 
-    public void assertAuthBannerText(String expectedError){
-        String actual =  getAuthBannerText();
-        boolean res = actual.contains(expectedError);
-        Assert.assertTrue(res);
-    }
 
-    public void validateBrokenImages(){
-        List<WebElement> images = driver.findElements(By.cssSelector("#example > img"));
-        validateAllImages(images);
-    }
+    //----------------------------------Broken Images page----------------------------------
 
-    public boolean validateForkMeImage(){
-        return imageUrlWorks("https://the-internet.herokuapp.com/img/forkme_right_green_007200.png");
-    }
+
+
+    //----------------------------------Challenging DOM page----------------------------------
+
+
+
+
+
+    //----------------------------------Checkboxes page----------------------------------
+
+
+
+
+   //---disappearing elements
+
+
+
+
 
 
 }
