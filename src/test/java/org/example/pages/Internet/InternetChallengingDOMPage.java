@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @ScenarioScope
@@ -30,13 +31,38 @@ public class InternetChallengingDOMPage extends Page {
     }
 
 
-    public List<String> getTableHeaderTitles(){
-        return getElementsByTagName("th").stream().map(WebElement::getText).collect(Collectors.toList());
+    public int getButtonLinkCount(){
+        By buttonLocator = By.cssSelector("a.button");
+
+        wait.until(driver ->
+                !driver.findElements(buttonLocator).isEmpty()
+
+                );
+
+        return driver.findElements(buttonLocator).size();
+
     }
 
-    public List<WebElement> getTableRows(){
-        return getElementsByTagName("tr");
+    public List<String> getTableHeaderTitles(){
+        By headerLocator = By.cssSelector("th");
+
+        wait.until(driver ->
+                !driver.findElements(headerLocator).isEmpty()
+        );
+
+        return driver.findElements(headerLocator).stream().map(WebElement::getText).collect(Collectors.toList());
     }
+
+    public List<WebElement> getTableRows() {
+        By rowsLocator = By.cssSelector("tr");
+
+        wait.until(driver ->
+                !driver.findElements(rowsLocator).isEmpty()
+        );
+
+        return driver.findElements(rowsLocator);
+    }
+
 
     public int getTableRowCount(){
         return getTableRows().size();
@@ -77,6 +103,10 @@ public class InternetChallengingDOMPage extends Page {
     }
 
     public boolean hasCanvasElement(){
+        By canvasLocator = By.id("canvas");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(canvasLocator));
+
         WebElement canvas = driver.findElement(By.id("canvas"));
         return canvas.isDisplayed();
     }

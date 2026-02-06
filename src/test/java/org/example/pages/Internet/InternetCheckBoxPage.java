@@ -20,10 +20,18 @@ public class InternetCheckBoxPage extends Page {
     }
 
     public List<WebElement> getAllCheckboxes(){
-        return driver.findElements(By.cssSelector("form > input[type='checkbox']"));
+        By checkBoxesLocator = By.cssSelector("form > input[type='checkbox']");
+
+        wait.until(driver ->
+                !driver.findElements(checkBoxesLocator).isEmpty()
+
+        );
+
+        return driver.findElements(checkBoxesLocator);
     }
 
     public boolean getCheckboxValueByLocator(int checkboxNumber) throws IndexOutOfBoundsException {
+
         List<WebElement> checkboxes = getAllCheckboxes();
         if(checkboxNumber < 0 || checkboxNumber >= checkboxes.size())
             throw new IndexOutOfBoundsException("checkbox number " + checkboxNumber + " out of bounds of length " + checkboxes.size());

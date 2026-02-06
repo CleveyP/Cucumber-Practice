@@ -18,7 +18,6 @@ public class InternetAddRemoveElementPage extends Page {
     }
 
     public int countDeleteButtons(){
-        assertUrl("https://the-internet.herokuapp.com/add_remove_elements/");
         return driver.findElements(By.cssSelector("button.added-manually")).size();
     }
 

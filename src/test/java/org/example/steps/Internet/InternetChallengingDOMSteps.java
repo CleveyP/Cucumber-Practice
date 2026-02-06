@@ -24,15 +24,8 @@ public class InternetChallengingDOMSteps {
 
     @Then("there should be 3 button link elements on the page")
     public void there_should_be_button_link_elements_on_the_page() {
-        List<WebElement> hrefList =  page.getElementsByTagName("a");
-        int count = 0;
-        for(WebElement href : hrefList){
-            if(Objects.requireNonNull(href.getAttribute("class")).contains("button")) {
-                System.out.println(href.getText());
-                count++;
-            }
-        }
-        Assert.assertEquals(count, 3);
+        int actualCount = page.getButtonLinkCount();
+        Assert.assertEquals(actualCount, 3);
     }
 
 

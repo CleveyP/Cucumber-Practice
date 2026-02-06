@@ -15,19 +15,31 @@ import java.time.Duration;
 @Configuration
 public class WebDriverConfig {
 
+
+
     @Bean(destroyMethod = "quit")
     @ScenarioScope(proxyMode = ScopedProxyMode.INTERFACES)
-    public ChromeDriver webDriver(){
+//  @ScenarioScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public WebDriver webDriver() {
+
+        boolean headless = Boolean.parseBoolean(
+                System.getProperty("headless", "true")
+        );
+
         ChromeOptions options = new ChromeOptions();
+
         options.addArguments(
                 "--no-sandbox",
-                "--headless=new",
                 "--disable-gpu",
-                "-ozone-override-screen-size=1920,1080",
-                "-window-size=1920,1080");
+                "--window-size=1920,1080"
+        );
+
+        if (headless)
+            options.addArguments("--headless=new");
+
         return new ChromeDriver(options);
-        //return new ChromeDriver();
     }
+
 
     @ScenarioScope
     @Bean
