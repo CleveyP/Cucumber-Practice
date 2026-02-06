@@ -16,16 +16,22 @@ import java.time.Duration;
 public class WebDriverConfig {
 
     @Bean(destroyMethod = "quit")
-    @ScenarioScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @ScenarioScope(proxyMode = ScopedProxyMode.INTERFACES)
     public ChromeDriver webDriver(){
-        //ChromeOptions options = new ChromeOptions().addArguments("--no-sandbox", "--headless=new", "--disable-gpu");
-        //return new ChromeDriver(options);
-        return new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(
+                "--no-sandbox",
+                "--headless=new",
+                "--disable-gpu",
+                "-ozone-override-screen-size=1920,1080",
+                "-window-size=1920,1080");
+        return new ChromeDriver(options);
+        //return new ChromeDriver();
     }
 
     @ScenarioScope
     @Bean
     public WebDriverWait getWebDriverWait(WebDriver wd){
-        return new WebDriverWait(wd, Duration.ofSeconds(2));
+        return new WebDriverWait(wd, Duration.ofSeconds(10));
     }
 }

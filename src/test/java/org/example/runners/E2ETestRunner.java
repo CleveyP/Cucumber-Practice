@@ -24,16 +24,8 @@ import java.util.List;
 )
 
 @Test(groups = {"e2e"})
-public class E2ETestRunner extends AbstractTestNGCucumberTests {
+public class E2ETestRunner extends BaseRunner {
 
-    @AfterSuite(alwaysRun = true)
-    public void generateReport(){
-        File sourceJson = new File("target/cucumber.json");
-        File reportOutputDir = new File("build/reports/cucumber/");
-
-        Configuration config = new Configuration(reportOutputDir, "Veeva Project");
-        new ReportBuilder(List.of(sourceJson.getAbsolutePath()), config).generateReports();
-    }
 
 }
 

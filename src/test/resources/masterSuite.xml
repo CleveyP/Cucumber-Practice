@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Full Parallel Suite"
+       parallel="tests"
+       thread-count="2">
+
+    <suite-files>
+        <suite-file path="internet_testng.xml"/>
+        <suite-file path="calculator_testng.xml"/>
+    </suite-files>
+
+</suite>
+
+
+

@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Internet Test Suite">
+<suite name="Internet Test Suite" parallel="methods" thread-count="1">
     <test name="Internet Feature Tests">
         <classes>
             <class name="org.example.runners.InternetTestRunner"/>

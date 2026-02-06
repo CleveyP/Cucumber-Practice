@@ -21,16 +21,8 @@ import java.util.List;
 )
 
 
-public class LoginTestRunner extends AbstractTestNGCucumberTests {
+public class LoginTestRunner extends BaseRunner {
 
-    @AfterSuite(alwaysRun = true)
-    public void generateReport(){
-        File sourceJson = new File("target/cucumber.json");
-        File reportOutputDir = new File("build/reports/cucumber/");
-
-        Configuration config = new Configuration(reportOutputDir, "Veeva Project");
-        new ReportBuilder(List.of(sourceJson.getAbsolutePath()), config).generateReports();
-    }
 
 }
 

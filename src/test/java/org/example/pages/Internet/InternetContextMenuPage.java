@@ -23,7 +23,7 @@ public class InternetContextMenuPage extends Page {
     public boolean theMenuExists(){
         List<WebElement> uls = getElementsByTagName("ul");
         if(!uls.isEmpty()){
-            WebElement firstUl =  uls.getFirst();
+            WebElement firstUl = uls.getFirst();
             return !firstUl.findElements(By.tagName("li")).isEmpty();
         }
 
