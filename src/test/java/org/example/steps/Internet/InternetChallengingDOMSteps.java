@@ -1,9 +1,10 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetChallengingDOMPage;
+import org.example.pages.Internet.InternetChallengingDOMPage;
+import org.example.steps.GenericSteps;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 

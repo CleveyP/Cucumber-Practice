@@ -1,4 +1,4 @@
-@Calculator
+@Calculator @e2e
 Feature: Calculator End to End Tests
 
   Background:

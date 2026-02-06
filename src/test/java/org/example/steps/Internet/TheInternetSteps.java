@@ -1,17 +1,13 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.TheInternetPage;
-import org.openqa.selenium.WebElement;
+import org.example.pages.Internet.TheInternetPage;
+import org.example.steps.GenericSteps;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
-import java.util.List;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 public class TheInternetSteps{

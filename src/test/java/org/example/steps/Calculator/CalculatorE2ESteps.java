@@ -1,13 +1,11 @@
-package org.example.steps;
+package org.example.steps.Calculator;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.CalculatorHomePage;
-import org.springframework.stereotype.Component;
+import org.example.pages.Calculator.CalculatorHomePage;
 
 @RequiredArgsConstructor
 public class CalculatorE2ESteps {

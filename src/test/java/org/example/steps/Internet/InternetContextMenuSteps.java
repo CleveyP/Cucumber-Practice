@@ -1,15 +1,12 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetContextMenuPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.example.pages.Internet.InternetContextMenuPage;
+import org.example.steps.GenericSteps;
 import org.testng.Assert;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 public class InternetContextMenuSteps {

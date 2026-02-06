@@ -1,4 +1,4 @@
-package org.example.steps;
+package org.example.steps.Calculator;
 
 import io.cucumber.java.en.*;
 import org.example.Calculator;

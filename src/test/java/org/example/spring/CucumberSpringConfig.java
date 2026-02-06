@@ -5,7 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @CucumberContextConfiguration
 @SpringBootTest
-//@ComponentScan(basePackages = {"org.example.steps"})
 public class CucumberSpringConfig {
 
 }

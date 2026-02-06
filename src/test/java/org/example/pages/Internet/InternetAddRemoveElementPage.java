@@ -1,14 +1,12 @@
-package org.example.pages;
+package org.example.pages.Internet;
 
 
 import io.cucumber.spring.ScenarioScope;
+import org.example.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
-import org.testng.Assert;
 
 
 @ScenarioScope

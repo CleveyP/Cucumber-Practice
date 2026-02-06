@@ -1,11 +1,12 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetCheckBoxPage;
+import org.example.pages.Internet.InternetCheckBoxPage;
+import org.example.steps.GenericSteps;
 import org.testng.Assert;
 
 @RequiredArgsConstructor

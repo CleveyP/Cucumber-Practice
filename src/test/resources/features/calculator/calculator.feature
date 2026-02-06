@@ -1,4 +1,4 @@
-@Calculator
+@Calculator @Unit
 Feature: Calculator Tests
 
   Background:

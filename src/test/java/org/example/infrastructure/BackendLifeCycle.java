@@ -22,6 +22,7 @@ public class BackendLifeCycle {
 
     @BeforeSuite(alwaysRun = true)
     protected static void startBackend() throws Exception {
+        System.out.println("Starting Backend!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         // Start Spring Boot programmatically
         context = SpringApplication.run(Main.class);
 

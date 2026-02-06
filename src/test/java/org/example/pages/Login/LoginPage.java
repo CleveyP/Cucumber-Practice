@@ -1,8 +1,9 @@
-package org.example.pages;
+package org.example.pages.Login;
 
 
 import io.cucumber.spring.ScenarioScope;
 
+import org.example.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

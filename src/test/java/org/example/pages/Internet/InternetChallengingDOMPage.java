@@ -1,7 +1,8 @@
-package org.example.pages;
+package org.example.pages.Internet;
 
 
 import io.cucumber.spring.ScenarioScope;
+import org.example.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 @ScenarioScope
 @Component
-public class InternetChallengingDOMPage extends Page{
+public class InternetChallengingDOMPage extends Page {
 
     public InternetChallengingDOMPage(WebDriver driver, WebDriverWait wait){
         super(driver, wait, "http://the-internet.herokuapp.com");

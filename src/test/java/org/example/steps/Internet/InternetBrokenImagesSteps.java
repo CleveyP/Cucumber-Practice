@@ -1,9 +1,8 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 import io.cucumber.java.en.Then;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetAuthFormPage;
-import org.example.pages.InternetBrokenImagesPage;
+import org.example.pages.Internet.InternetBrokenImagesPage;
 import org.example.steps.GenericSteps;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;

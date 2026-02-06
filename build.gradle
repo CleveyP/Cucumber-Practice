@@ -41,35 +41,47 @@ dependencies {
 
 }
 
+
+
 //test {
+//    def groups = System.getProperty('groups', '') // default empty = run all if not provided
 //    useTestNG() {
-//        suites 'src/test/resources/testng.xml'
-//
-//
+//        if (groups) {
+//            println "Running only groups: $groups"
+//            includeGroups groups.split(',')  // allows multiple groups separated by commas
+//        }
 //    }
 //
 //    testLogging {
 //        events "PASSED", "FAILED", "SKIPPED"
 //        showStandardStreams = true
 //    }
+//   systemProperties System.properties
 //}
 
-
 test {
-    def groups = System.getProperty('groups', '') // default empty = run all if not provided
+
     useTestNG() {
-        if (groups) {
-            println "Running only groups: $groups"
-            includeGroups groups.split(',')  // allows multiple groups separated by commas
+        // Allow suite to be passed from CLI
+        def suiteFile = System.getProperty("suite")
+
+        if (suiteFile) {
+            println "Running TestNG suite: $suiteFile"
+            suites "src/test/resources/${suiteFile}"
+        } else {
+            // Default suite if nothing passed
+            suites "src/test/resources/testng.xml"
         }
     }
+
+    systemProperties System.properties
 
     testLogging {
         events "PASSED", "FAILED", "SKIPPED"
         showStandardStreams = true
     }
-   systemProperties System.properties
 }
+
 
 
 

@@ -1,10 +1,10 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 
 import io.cucumber.java.en.And;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetAuthFormPage;
-import org.example.pages.TheInternetPage;
+import org.example.pages.Internet.InternetAuthFormPage;
+import org.example.steps.GenericSteps;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RequiredArgsConstructor

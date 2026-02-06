@@ -1,9 +1,10 @@
-package org.example.steps;
+package org.example.steps.Internet;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.InternetDisappearingElementsPage;
+import org.example.pages.Internet.InternetDisappearingElementsPage;
+import org.example.steps.GenericSteps;
 import org.testng.Assert;
 
 @RequiredArgsConstructor

@@ -1,8 +1,8 @@
-package org.example.pages;
+package org.example.pages.Internet;
 
 
 import io.cucumber.spring.ScenarioScope;
-import lombok.RequiredArgsConstructor;
+import org.example.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import org.testng.Assert;
 
 @ScenarioScope
 @Component
-public class InternetAuthFormPage extends Page{
+public class InternetAuthFormPage extends Page {
 
 
     public InternetAuthFormPage(WebDriver driver, WebDriverWait wait) {

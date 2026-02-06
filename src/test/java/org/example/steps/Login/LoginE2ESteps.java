@@ -1,12 +1,11 @@
-package org.example.steps;
+package org.example.steps.Login;
 
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
-import org.example.pages.LoginPage;
+import org.example.pages.Login.LoginPage;
 import org.example.spring.ScenarioContext;
 
 import java.util.Random;
