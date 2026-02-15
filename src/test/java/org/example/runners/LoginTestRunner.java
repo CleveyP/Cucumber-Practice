@@ -12,7 +12,7 @@ import java.util.List;
 
 @CucumberOptions(
         features = "src/test/resources/features/login",      // path to .feature files
-        glue = {"org.example.steps.Login", "org.example.steps.GenericSteps.java", "org.example.selenium", "org.example.spring", "org.example.hooks"},
+        glue = {"org.example.steps", "org.example.selenium", "org.example.spring", "org.example.hooks"},
         plugin = {
                 "pretty",                                  // nice console output
                 "json:target/cucumber.json"               // optional JSON report
