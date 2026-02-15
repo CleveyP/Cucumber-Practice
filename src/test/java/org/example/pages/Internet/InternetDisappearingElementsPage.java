@@ -2,6 +2,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class InternetDisappearingElementsPage extends Page {
 
-    public InternetDisappearingElementsPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetDisappearingElementsPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public boolean theElementWithTextExists(String tag, String text){

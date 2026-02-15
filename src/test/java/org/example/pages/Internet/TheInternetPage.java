@@ -2,6 +2,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +21,8 @@ public class TheInternetPage extends Page {
 
     public Map<String, WebElement> hrefList = new HashMap<>();
 
-    public TheInternetPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public TheInternetPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public void loadLinks(){
@@ -60,7 +61,7 @@ public class TheInternetPage extends Page {
 
     public int countDeleteButtons(){
         assertUrl("https://the-internet.herokuapp.com/add_remove_elements/");
-        return driver.findElements(By.cssSelector("button.added-manually")).size();
+        return driver.get().findElements(By.cssSelector("button.added-manually")).size();
     }
 
 

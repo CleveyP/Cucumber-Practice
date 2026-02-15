@@ -3,6 +3,7 @@ package org.example.hooks;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 import lombok.RequiredArgsConstructor;
+import org.example.selenium.SafeDriver;
 import org.example.spring.ScenarioContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 @RequiredArgsConstructor
 public class ScreenshotHook {
 
-    private final WebDriver driver;
+    private final SafeDriver driver;
     private final ScenarioContext scenarioContext;
 
 
@@ -21,8 +22,8 @@ public class ScreenshotHook {
         Scenario scenario = scenarioContext.getScenario();
         if (scenario.isFailed()) {
 
-            byte[] screenshot = ((TakesScreenshot) driver)
-                    .getScreenshotAs(OutputType.BYTES);
+            byte[] screenshot = driver.screenshot();
+
 
             scenario.attach(
                     screenshot,

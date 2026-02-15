@@ -3,6 +3,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,13 +20,13 @@ import java.util.stream.Collectors;
 @Component
 public class InternetChallengingDOMPage extends Page {
 
-    public InternetChallengingDOMPage(WebDriver driver, WebDriverWait wait){
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetChallengingDOMPage(SafeDriver driver, WebDriverWait wait){
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public void assertAlertButtonStyleIsAlert(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.button.alert")));
-        WebElement alertButton = driver.findElement(By.cssSelector("a.button.alert"));
+        WebElement alertButton = driver.get().findElement(By.cssSelector("a.button.alert"));
         Assert.assertEquals(alertButton.getCssValue("background-color"),"rgba(198, 15, 19, 1)");
         Assert.assertEquals(alertButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
     }
@@ -39,7 +40,7 @@ public class InternetChallengingDOMPage extends Page {
 
                 );
 
-        return driver.findElements(buttonLocator).size();
+        return driver.get().findElements(buttonLocator).size();
 
     }
 
@@ -50,7 +51,7 @@ public class InternetChallengingDOMPage extends Page {
                 !driver.findElements(headerLocator).isEmpty()
         );
 
-        return driver.findElements(headerLocator).stream().map(WebElement::getText).collect(Collectors.toList());
+        return driver.get().findElements(headerLocator).stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public List<WebElement> getTableRows() {
@@ -60,7 +61,7 @@ public class InternetChallengingDOMPage extends Page {
                 !driver.findElements(rowsLocator).isEmpty()
         );
 
-        return driver.findElements(rowsLocator);
+        return driver.get().findElements(rowsLocator);
     }
 
 
@@ -107,7 +108,7 @@ public class InternetChallengingDOMPage extends Page {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(canvasLocator));
 
-        WebElement canvas = driver.findElement(By.id("canvas"));
+        WebElement canvas = driver.get().findElement(By.id("canvas"));
         return canvas.isDisplayed();
     }
 }

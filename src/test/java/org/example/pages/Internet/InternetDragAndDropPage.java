@@ -3,6 +3,7 @@ package org.example.pages.Internet;
 import io.cucumber.spring.ScenarioScope;
 import lombok.RequiredArgsConstructor;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,17 +18,13 @@ import java.util.Set;
 
 @Component
 @ScenarioScope
-
-
-
-
 public class InternetDragAndDropPage extends Page {
 
     public final Set<String> cards = Set.of("A", "B");
 
 
-    public InternetDragAndDropPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetDragAndDropPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
 
@@ -44,7 +41,7 @@ public class InternetDragAndDropPage extends Page {
         WebElement fromElement = wait.until(ExpectedConditions.elementToBeClickable(fromLocator));
         WebElement toElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toLocator));
 
-        Actions action = new Actions(driver);
+        Actions action = driver.actions();
 
         assert fromElement != null;
         assert toElement != null;
@@ -71,7 +68,7 @@ public class InternetDragAndDropPage extends Page {
         WebElement fromElement = wait.until(ExpectedConditions.elementToBeClickable(fromLocator));
         WebElement toElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toLocator));
 
-        Actions action = new Actions(driver);
+        Actions action = driver.actions();
 
         assert fromElement != null;
         assert toElement != null;
@@ -96,7 +93,7 @@ public class InternetDragAndDropPage extends Page {
 
         wait.until(driver -> driver.findElement(cardLocator).isDisplayed());
 
-        return driver.findElement(cardLocator).getText();
+        return driver.get().findElement(cardLocator).getText();
 
     }
 }

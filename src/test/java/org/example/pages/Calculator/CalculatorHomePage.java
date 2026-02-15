@@ -3,6 +3,7 @@ package org.example.pages.Calculator;
 
 import org.example.infrastructure.BackendLifeCycle;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ import org.testng.Assert;
 @Component
 public class CalculatorHomePage extends Page {
 
-    public CalculatorHomePage(WebDriver driver, WebDriverWait wait) {
+    public CalculatorHomePage(SafeDriver driver, WebDriverWait wait) {
         super(driver, wait, "file:///C:/Users/cleve/IdeaProjects/veevaSample/src/test/resources/html/calculatorPage.html");
     }
 
@@ -39,15 +40,15 @@ public class CalculatorHomePage extends Page {
 
     // Validate inputs are populated correctly
     public void checkInputs(int expected1, int expected2) {
-        WebElement input1 = driver.findElement(input1By);
-        WebElement input2 = driver.findElement(input2By);
+        WebElement input1 = driver.get().findElement(input1By);
+        WebElement input2 = driver.get().findElement(input2By);
         Assert.assertEquals(input1.getAttribute("value"), String.valueOf(expected1));
         Assert.assertEquals(input2.getAttribute("value"), String.valueOf(expected2));
     }
 
     // Select an operation
     public void selectOperation(String option) {
-        WebElement operationSelect = driver.findElement(operationSelectBy);
+        WebElement operationSelect = driver.get().findElement(operationSelectBy);
         Select select = new Select(operationSelect);
         select.selectByValue(option);
     }
@@ -59,7 +60,7 @@ public class CalculatorHomePage extends Page {
 
     // Validate the result paragraph has expected value
     public void validateResult(int expected) {
-        WebElement resultParagraph = driver.findElement(resultParagraphBy);
+        WebElement resultParagraph = driver.get().findElement(resultParagraphBy);
 
         waitForText(resultParagraphBy, String.valueOf(expected));
         Assert.assertEquals(resultParagraph.getText(), String.valueOf(expected));

@@ -4,6 +4,7 @@ package org.example.pages.Login;
 import io.cucumber.spring.ScenarioScope;
 
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ import org.testng.Assert;
 @ScenarioScope
 public class LoginPage extends Page {
 
-    public LoginPage(WebDriver driver, WebDriverWait wait) {
+    public LoginPage(SafeDriver driver, WebDriverWait wait) {
         super(driver, wait, "file:///C:/Users/cleve/IdeaProjects/veevaSample/src/test/resources/html/LoginPage.html");
     }
 
@@ -40,8 +41,8 @@ public class LoginPage extends Page {
 
     // Validate inputs are populated correctly
     public void checkInputs(String expected1, String expected2) {
-        WebElement input1 = driver.findElement(usernameInputBy);
-        WebElement input2 = driver.findElement(passwordInputBy);
+        WebElement input1 = driver.get().findElement(usernameInputBy);
+        WebElement input2 = driver.get().findElement(passwordInputBy);
         Assert.assertEquals(input1.getAttribute("value"), String.valueOf(expected1));
         Assert.assertEquals(input2.getAttribute("value"), String.valueOf(expected2));
     }
@@ -54,7 +55,7 @@ public class LoginPage extends Page {
 
     // Validate the result paragraph has expected value
     public void validateResult(String expected) {
-        WebElement resultParagraph = driver.findElement(errorMessageBy);
+        WebElement resultParagraph = driver.get().findElement(errorMessageBy);
         // Wait until the paragraph text is non-empty
         waitForText(errorMessageBy, String.valueOf(expected));
         Assert.assertEquals(resultParagraph.getText(), String.valueOf(expected));

@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,33 +14,33 @@ import java.util.Objects;
 
 
 public abstract class Page {
-    protected final WebDriver driver;
+    protected final SafeDriver driver;
     protected final WebDriverWait wait;
     private final String url;
 
 
-    public Page(WebDriver driver, WebDriverWait wait, String url) {
+    public Page(SafeDriver driver, WebDriverWait wait, String url) {
         this.driver = driver;
         this.wait = wait;
         this.url = url;
     }
 
     public void open(){
-        driver.get(url);
+        driver.get().get(url);
     }
 
     public void openPage(String path){
-        driver.get(url + "/" + path);
+        driver.get().get(url + "/" + path);
     }
 
     public void fillInputField(String content, By inputReference) {
-        WebElement input1 = driver.findElement(inputReference);
+        WebElement input1 = driver.get().findElement(inputReference);
         input1.clear();
         input1.sendKeys(String.valueOf(content));
     }
 
     public void clickButton(By buttonLocator) {
-            driver.findElement(buttonLocator).click();
+            driver.get().findElement(buttonLocator).click();
     }
 
     public void waitForText(By locator, String expected){
@@ -68,7 +69,7 @@ public abstract class Page {
 
     public void assertUrl(String url) {
         wait.until(ExpectedConditions.urlContains(url));
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(driver.get().getCurrentUrl(), url);
     }
 
 
@@ -84,7 +85,7 @@ public abstract class Page {
     }
 
     public List<WebElement> getElementsByTagName(String tagName) {
-        return driver.findElements(By.tagName(tagName));
+        return driver.get().findElements(By.tagName(tagName));
     }
 
     public int getElementCountByTagName(String tagName){
@@ -92,15 +93,15 @@ public abstract class Page {
     }
 
     public int getElementAttributeValueById(String id, String attribute){
-        return Integer.parseInt(Objects.requireNonNull(driver.findElement(By.id(id)).getAttribute(attribute)));
+        return Integer.parseInt(Objects.requireNonNull(driver.get().findElement(By.id(id)).getAttribute(attribute)));
     }
 
     public void refreshPageHard(){
-        driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
+        driver.get().get(Objects.requireNonNull(driver.get().getCurrentUrl()));
     }
 
     public void refreshPageSoft(){
-        Actions actions = new Actions(driver);
+        Actions actions = driver.actions();
         actions.keyDown(Keys.CONTROL)
                 .sendKeys("r")
                 .keyUp(Keys.CONTROL)
@@ -109,18 +110,18 @@ public abstract class Page {
     }
 
     public WebElement getElementById(String id){
-        return driver.findElement(By.id(id));
+        return driver.get().findElement(By.id(id));
     }
 
     public void rightClickElement(WebElement element) {
-        new Actions(driver)
+        driver.actions()
                 .contextClick(element)
                 .perform();
     }
 
     public boolean assertAlertOnPage(){
         try {
-            driver.switchTo().alert();
+            driver.get().switchTo().alert();
         } catch (NoAlertPresentException e) {
             return false;
         }

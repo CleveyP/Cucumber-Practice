@@ -3,6 +3,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +16,8 @@ import java.util.List;
 @Component
 public class InternetCheckBoxPage extends Page {
 
-    public InternetCheckBoxPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetCheckBoxPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public List<WebElement> getAllCheckboxes(){
@@ -27,7 +28,7 @@ public class InternetCheckBoxPage extends Page {
 
         );
 
-        return driver.findElements(checkBoxesLocator);
+        return driver.get().findElements(checkBoxesLocator);
     }
 
     public boolean getCheckboxValueByLocator(int checkboxNumber) throws IndexOutOfBoundsException {

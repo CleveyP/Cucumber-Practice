@@ -43,22 +43,6 @@ dependencies {
 
 
 
-//test {
-//    def groups = System.getProperty('groups', '') // default empty = run all if not provided
-//    useTestNG() {
-//        if (groups) {
-//            println "Running only groups: $groups"
-//            includeGroups groups.split(',')  // allows multiple groups separated by commas
-//        }
-//    }
-//
-//    testLogging {
-//        events "PASSED", "FAILED", "SKIPPED"
-//        showStandardStreams = true
-//    }
-//   systemProperties System.properties
-//}
-
 test {
 
     useTestNG() {

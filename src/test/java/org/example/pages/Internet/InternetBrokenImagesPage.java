@@ -2,6 +2,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,12 +16,12 @@ import java.util.List;
 @Component
 public class InternetBrokenImagesPage extends Page {
 
-    public InternetBrokenImagesPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetBrokenImagesPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public void validateBrokenImages(){
-        List<WebElement> images = driver.findElements(By.cssSelector("#example > img"));
+        List<WebElement> images = driver.get().findElements(By.cssSelector("#example > img"));
         validateAllImages(images);
     }
 

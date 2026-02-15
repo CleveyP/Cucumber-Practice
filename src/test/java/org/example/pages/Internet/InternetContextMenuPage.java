@@ -3,6 +3,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,11 +17,17 @@ import java.util.List;
 public class InternetContextMenuPage extends Page {
 
 
-    public InternetContextMenuPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetContextMenuPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public boolean theMenuExists(){
+
+        By ulsLocator = By.tagName("ul");
+
+
+        wait.until( driver -> !driver.findElements(ulsLocator).isEmpty());
+
         List<WebElement> uls = getElementsByTagName("ul");
         if(!uls.isEmpty()){
             WebElement firstUl = uls.getFirst();

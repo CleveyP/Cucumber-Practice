@@ -3,6 +3,7 @@ package org.example.pages.Internet;
 
 import io.cucumber.spring.ScenarioScope;
 import org.example.pages.Page;
+import org.example.selenium.SafeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,13 +17,13 @@ import org.testng.Assert;
 public class InternetAuthFormPage extends Page {
 
 
-    public InternetAuthFormPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait, "http://the-internet.herokuapp.com");
+    public InternetAuthFormPage(SafeDriver driver, WebDriverWait wait) {
+        super(driver, wait, "https://the-internet.herokuapp.com");
     }
 
     public void fillAuthenticationForm(String username, String password) {
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
+        driver.get().findElement(By.id("username")).sendKeys(username);
+        driver.get().findElement(By.id("password")).sendKeys(password);
     }
 
     public void submitAuthenticationForm(){
@@ -32,7 +33,7 @@ public class InternetAuthFormPage extends Page {
 
     public String getAuthBannerText(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
-        WebElement banner = driver.findElement(By.id("flash"));
+        WebElement banner = driver.get().findElement(By.id("flash"));
         return banner.getText();
     }
 
